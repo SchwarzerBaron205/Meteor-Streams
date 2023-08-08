@@ -1,17 +1,17 @@
 # Meteor-Streams
 
-This repository contains project for calculating meteor showers.
+Этот репозиторий содержит проект для расчета метеорных потоков.
 
-ZHR (Zenithal Hourly Rate) is the number of meteors per hour that we could see if the meteor shower radiant was at the zenith and the sky was clear.
+ZHR (Зенитная почасовая ставка) - это количество метеоров в час, которое мы могли бы увидеть, если бы радиант метеорного потока находился в зените и небо было ясным.
 
-The program receives a file with the stellar magnitudes of meteors and calculates:
+Программа получает файл со звездными величинами метеоров и вычисляет:
 
-1. The number of all meteors in the file;
-2. The number of bolids;
-3. The numbers of meteors having a stellar magnitude m;
-4. The mean popilation index of meteor shower;
-5. The zenith hourly rates for each hour of observations;
-6. The mean zenithal horly rate per night;
-7. The sample variance of data;
-8. The corrected sample variance of data;
-9. The deviation from the norm;
+1. Количество всех метеоров в файле;
+2. Количество болидов;
+3. Количество метеоров, имеющих звездную величину m;
+4. Средний популяционный индекс метеорного потока;
+5. Зенитные часовые числа за каждый час наблюдений;
+6. Среднее зенитное часовое число за ночь;
+7. Выборочная дисперсия данных;
+8. Исправленная выборочная дисперсия данных;
+9. Отклонение от нормы;
