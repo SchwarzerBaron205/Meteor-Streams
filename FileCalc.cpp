@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <vector>
 #include <fstream>
 #include <cmath>
@@ -395,8 +395,6 @@ double Calculating::ZenithHourlyRateCalculating(std::vector<double> vector_test,
 
     double zenith_hourly_rate = (a / b);
 
-    std::cout << powered_rating;
-
     return zenith_hourly_rate;
 }
 
@@ -408,17 +406,12 @@ std::vector<double> Calculating::ZenithHourlyRateMatrix(std::vector<double> vect
     std::cout << "Сколько часов велись наблюдения?" << "\n";
     std::cin >> time;
 
-    double alpha;
-    std::cout << "Введите коэффициент закрытия неба облаками (в процентах) " << "\n";
-    std::cin >> alpha;
-
-    double factor = (1 / (1 - (alpha / 100)));
-
     double limit_magnitude;
     std::cout << "Введите предельную звёздную величину в данном эксперименте " << "\n";
     std::cin >> limit_magnitude;
 
     std::vector<double> zhr;
+    double alpha;
     double zenith_distance;
     int N;
     int counter = 1;
@@ -433,9 +426,15 @@ std::vector<double> Calculating::ZenithHourlyRateMatrix(std::vector<double> vect
         std::cout << "Введите число увиденных метеоров за " << counter << " час наблюдений " << "\n";
         std::cin >> N;
 
+        std::cout << "Введите коэффициент покрытия неба облаками и засветки Луной за " << counter << " час наблюдений " << "\n";
+        std::cin >> alpha;
+
+        double factor = (1 / (1 - (alpha / 100)));
+
         if ((zenith_distance > 0) || (zenith_distance < 90))
         {
-            double z = ZenithHourlyRateCalculating(vector_test, N, factor, limit_magnitude, zenith_distance);
+            double z1 = ZenithHourlyRateCalculating(vector_test, N, factor, limit_magnitude, zenith_distance);
+            int z = std::lround(z1);
             zhr.push_back(z);
         }
 
@@ -466,9 +465,9 @@ void Calculating::MeanZenithHourlyRate(std::vector<double> zhr, std::string file
         summ += zhr[i];
         counter += 1;
     }
-    double mean_zhr = summ / counter;
+    int mean_zhr = std::lround(summ / counter);
 
-    file << "\n" << "5. Среднее зенитное часовое число потока ZHR_ср = " << mean_zhr << "\n";
+    file << "\n" << "6. Среднее зенитное часовое число потока ZHR_ср = " << mean_zhr << "\n";
 
     std::cout << "Вычислено среднее зенитное часовое число потока!" << "\n";
 
@@ -481,10 +480,8 @@ double Calculating::MeanZenithHourlyRate(std::vector<double> zhr) // Средн�
 {
     double summ = 0;
 
-    for (int i = 0; i < zhr.size(); i++)
-    {
-        summ += zhr[i];
-    }
+    for (int i = 0; i < zhr.size(); i++) summ += zhr[i];
+
     double mean_zhr = summ / zhr.size();
 
     return mean_zhr;
@@ -503,7 +500,7 @@ void Calculating::DispersionExperiment(std::vector<double> zhr, std::string file
     if (zhr.size() == 1)
 
     {
-        file << "\n6. Выборочная дисперсия отсутствует " << "\n";
+        file << "\n7. Выборочная дисперсия отсутствует " << "\n";
         std::cout << "Отстутствует выборочная дисперсия эксперимента" << "\n";
     }
 
@@ -520,7 +517,7 @@ void Calculating::DispersionExperiment(std::vector<double> zhr, std::string file
 
         double dispersion = summ / counter;
 
-        file << "\n6. Выборочная дисперсия эксперимента D = " << dispersion << "\n";
+        file << "\n7. Выборочная дисперсия эксперимента D = " << dispersion << "\n";
 
         std::cout << "Вычислена выборочная дисперсия эксперимента!" << "\n";
 
@@ -554,7 +551,7 @@ void Calculating::CorrectDispersionExperiment(std::vector<double> zhr, double di
     if (zhr.size() == 1)
 
     {
-        file << "\n7. Исправленная дисперсия отсутствует " << "\n";
+        file << "\n8. Исправленная дисперсия отсутствует " << "\n";
         std::cout << "Отстутствует исправленная дисперсия эксперимента" << "\n";
     }
 
@@ -563,7 +560,7 @@ void Calculating::CorrectDispersionExperiment(std::vector<double> zhr, double di
     {
         double correct_dispesion = dispersion * zhr.size() / (zhr.size() - 1);
 
-        file << "\n7. Исправленная выборочная дисперсия эксперимента S^2 = " << correct_dispesion << "\n";
+        file << "\n8. Исправленная выборочная дисперсия эксперимента S^2 = " << correct_dispesion << "\n";
 
         std::cout << "Вычислена исправленная выборочная дисперсия эксперимента!" << "\n";
 
@@ -816,7 +813,11 @@ bool FileWork::New_ResearchMeteorStream()
 
         file_write.CorrectDispersionExperiment(zhr, dispersion, filename_write);
 
-        file_write.MeanNorm(zhr, filename_write);
+        file1.open(filename_write, std::ofstream::app);
+
+        file1 << "8. Исследуется неизвестный поток, значит, отклонения от нормы нет." << "\n";
+
+        file1.close();
 
         std::cout << "Продолжить расчёт?" << "\n";
         std::cin >> answer;
