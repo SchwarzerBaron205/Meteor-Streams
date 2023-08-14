@@ -1,26 +1,43 @@
-﻿#include <iostream>
+#include <iostream>
 #include <fstream>
 #include <cmath>
 #include <vector>
 #include <string>
 #include "FileCalc.h"
+#include "Info.h"
 
 
 bool Menu()
 {
 
-    bool flag{};
-   
-    std::string answer;
+    bool flag = true;
+
+    int answer;
 
     std::cout << "Добро пожаловать в калькулятор расчёта ZHR метеорного потока!" << "\n";
-    std::cout << "Начать исследования и расчёт?" << "\n";
+    std::cout << "1. Исследовать поток" << "\n";
+    std::cout << "2. Получить информацию о потоке" << "\n";
+
     std::cin >> answer;
 
-    if ((answer == "Да") || (answer == "да") || (answer == "Yes") || (answer == "yes")) flag = true;
+    switch (answer)
 
-    if ((answer == "Нет") || (answer == "нет") || (answer == "No") || (answer == "no")) flag = false;
+    {
 
+    case 1:
+    {
+        flag = true;
+        break;
+    }
+
+    case 2:
+    {
+        flag = false;
+        MeteorInfo();
+        break;
+    }
+
+    }
 
     return flag;
 
@@ -58,7 +75,7 @@ int main()
         std::cout << "16. альфа-Каприкорниды (CAP)" << "\n";
         std::cout << "17. Южные йота-Аквариды (SIA)" << "\n";
         std::cout << "18. Северные дельта-Аквариды (NDA)" << "\n";
-        std::cout << "19. Персеиды (PER)*" << "\n";
+        std::cout << "19. Персеиды (PER)" << "\n";
         std::cout << "20. каппа-Цигниды (KCG)" << "\n";
         std::cout << "21. Северные йота-Аквариды (NIA)" << "\n";
         std::cout << "22. альфа-Ауригиды (AUR)" << "\n";
@@ -89,6 +106,7 @@ int main()
         {
         case 1:
         {
+            std::cout << "Вы исследуете метеорный поток Квадрантиды (QUA)!" << "\n";
             double r = 2.1;
             double ZHR_0 = 120.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -96,6 +114,7 @@ int main()
         }
         case 2:
         {
+            std::cout << "Вы исследуете метеорный поток дельта-Канцириды (DCA)!" << "\n";
             double r = 3.0;
             double ZHR_0 = 4.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -103,6 +122,7 @@ int main()
         }
         case 3:
         {
+            std::cout << "Вы исследуете метеорный поток альфа-Центавриды (ACE)!" << "\n";
             double r = 2.0;
             double ZHR_0 = 6.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -110,6 +130,7 @@ int main()
         }
         case 4:
         {
+            std::cout << "Вы исследуете метеорный поток дельта-Леониды (DLE)!" << "\n";
             double r = 3.0;
             double ZHR_0 = 2.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -117,6 +138,7 @@ int main()
         }
         case 5:
         {
+            std::cout << "Вы исследуете метеорный поток гамма-Нормиды (GNO)!" << "\n";
             double r = 2.4;
             double ZHR_0 = 8.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -124,6 +146,7 @@ int main()
         }
         case 6:
         {
+            std::cout << "Вы исследуете метеорный поток Виргиниды (VIR)!" << "\n";
             double r = 3.0;
             double ZHR_0 = 5.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -131,6 +154,7 @@ int main()
         }
         case 7:
         {
+            std::cout << "Вы исследуете метеорный поток Лириды (LYR)!" << "\n";
             double r = 2.1;
             double ZHR_0 = 18.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -138,12 +162,14 @@ int main()
         }
         case 8:
         {
+            std::cout << "Вы исследуете метеорный поток пи-Пуппиды (PPU)!" << "\n";
             double r = 2.0;
             research = HEAD.ResearchMeteorStream(r);
             break;
         }
         case 9:
         {
+            std::cout << "Вы исследуете метеорный поток эта-Аквариды (ETA)!" << "\n";
             double r = 2.4;
             double ZHR_0 = 60.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -151,6 +177,7 @@ int main()
         }
         case 10:
         {
+            std::cout << "Вы исследуете метеорный поток Сагиттариды (SAG)!" << "\n";
             double r = 2.5;
             double ZHR_0 = 5.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -158,12 +185,14 @@ int main()
         }
         case 11:
         {
+            std::cout << "Вы исследуете метеорный поток Июньские Боотиды (JBO)!" << "\n";
             double r = 2.2;
             research = HEAD.ResearchMeteorStream(r);
             break;
         }
         case 12:
         {
+            std::cout << "Вы исследуете метеорный поток Пегасиды (JPE)!" << "\n";
             double r = 3.0;
             double ZHR_0 = 3.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -171,12 +200,14 @@ int main()
         }
         case 13:
         {
+            std::cout << "Вы исследуете метеорный поток Июльские Фенициды (PHE)!" << "\n";
             double r = 3.0;
             research = HEAD.ResearchMeteorStream(r);
             break;
         }
         case 14:
         {
+            std::cout << "Вы исследуете метеорный поток Южные Писциды (PAU)!" << "\n";
             double r = 3.2;
             double ZHR_0 = 5.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -184,6 +215,7 @@ int main()
         }
         case 15:
         {
+            std::cout << "Вы исследуете метеорный поток Южные дельта-Аквариды (SDA)!" << "\n";
             double r = 3.2;
             double ZHR_0 = 20.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -191,6 +223,7 @@ int main()
         }
         case 16:
         {
+            std::cout << "Вы исследуете метеорный поток альфа-Каприкорниды (CAP)!" << "\n";
             double r = 2.5;
             double ZHR_0 = 4.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -198,6 +231,7 @@ int main()
         }
         case 17:
         {
+            std::cout << "Вы исследуете метеорный поток Южные йота-Аквариды (SIA)!" << "\n";
             double r = 2.9;
             double ZHR_0 = 2.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -205,6 +239,7 @@ int main()
         }
         case 18:
         {
+            std::cout << "Вы исследуете метеорный поток Северные дельта-Аквариды (NDA)!" << "\n";
             double r = 3.4;
             double ZHR_0 = 4.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -212,6 +247,7 @@ int main()
         }
         case 19:
         {
+            std::cout << "Вы исследуете метеорный поток Персеиды (PER)!" << "\n";
             double r = 2.6;
             double ZHR_0 = 100.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -219,6 +255,7 @@ int main()
         }
         case 20:
         {
+            std::cout << "Вы исследуете метеорный поток каппа-Цигниды (KCG)!" << "\n";
             double r = 3.0;
             double ZHR_0 = 3.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -226,6 +263,7 @@ int main()
         }
         case 21:
         {
+            std::cout << "Вы исследуете метеорный поток Северные йота-Аквариды (NIA)!" << "\n";
             double r = 3.2;
             double ZHR_0 = 3.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -233,6 +271,7 @@ int main()
         }
         case 22:
         {
+            std::cout << "Вы исследуете метеорный поток альфа-Ауригиды (AUR)!" << "\n";
             double r = 2.6;
             double ZHR_0 = 10.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -240,6 +279,7 @@ int main()
         }
         case 23:
         {
+            std::cout << "Вы исследуете метеорный поток дельта-Ауригиды (DAU)!" << "\n";
             double r = 2.9;
             double ZHR_0 = 5.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -247,6 +287,7 @@ int main()
         }
         case 24:
         {
+            std::cout << "Вы исследуете метеорный поток Писциды (SPI)!" << "\n";
             double r = 3.0;
             double ZHR_0 = 3.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -254,12 +295,14 @@ int main()
         }
         case 25:
         {
+            std::cout << "Вы исследуете метеорный поток Дракониды (GIA)!" << "\n";
             double r = 2.6;
             research = HEAD.ResearchMeteorStream(r);
             break;
         }
         case 26:
         {
+            std::cout << "Вы исследуете метеорный поток эпсилон-Геминиды (EGE)!" << "\n";
             double r = 3.0;
             double ZHR_0 = 2.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -267,6 +310,7 @@ int main()
         }
         case 27:
         {
+            std::cout << "Вы исследуете метеорный поток Ориониды (ORI)!" << "\n";
             double r = 2.5;
             double ZHR_0 = 23.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -274,6 +318,7 @@ int main()
         }
         case 28:
         {
+            std::cout << "Вы исследуете метеорный поток Южные Тауриды (STA)!" << "\n";
             double r = 2.3;
             double ZHR_0 = 5.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -281,14 +326,15 @@ int main()
         }
         case 29:
         {
+            std::cout << "Вы исследуете метеорный поток Северные Тауриды (NTA)!" << "\n";
             double r = 2.3;
             double ZHR_0 = 5.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
             break;
         }
-
         case 30:
         {
+            std::cout << "Вы исследуете метеорный поток Леониды (LEO)!" << "\n";
             double r = 2.5;
             double ZHR_0 = 15.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -296,12 +342,14 @@ int main()
         }
         case 31:
         {
+            std::cout << "Вы исследуете метеорный поток альфа-Моноцеротиды (AMO)!" << "\n";
             double r = 2.4;
             research = HEAD.ResearchMeteorStream(r);
             break;
         }
         case 32:
         {
+            std::cout << "Вы исследуете метеорный поток хи-Ориониды (XOR)!" << "\n";
             double r = 3.0;
             double ZHR_0 = 3.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -309,12 +357,14 @@ int main()
         }
         case 33:
         {
+            std::cout << "Вы исследуете метеорный поток Декабрьские Фенициды (PHO)!" << "\n";
             double r = 2.8;
             research = HEAD.ResearchMeteorStream(r);
             break;
         }
         case 34:
         {
+            std::cout << "Вы исследуете метеорный поток Пуппиды/Велиды (PUP)!" << "\n";
             double r = 2.9;
             double ZHR_0 = 10.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -322,6 +372,7 @@ int main()
         }
         case 35:
         {
+            std::cout << "Вы исследуете метеорный поток Моноцеротиды (MON)!" << "\n";
             double r = 3.0;
             double ZHR_0 = 3.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -329,6 +380,7 @@ int main()
         }
         case 36:
         {
+            std::cout << "Вы исследуете метеорный поток сигма-Гидриды (HYD)!" << "\n";
             double r = 3.0;
             double ZHR_0 = 2.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -336,6 +388,7 @@ int main()
         }
         case 37:
         {
+            std::cout << "Вы исследуете метеорный поток Геминиды (GEM)!" << "\n";
             double r = 2.6;
             double ZHR_0 = 120.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -343,6 +396,7 @@ int main()
         }
         case 38:
         {
+            std::cout << "Вы исследуете метеорный поток Кома Беренициды (COM)!" << "\n";
             double r = 3.0;
             double ZHR_0 = 5.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -350,6 +404,7 @@ int main()
         }
         case 39:
         {
+            std::cout << "Вы исследуете метеорный поток Урсиды(URS)!" << "\n";
             double r = 3.0;
             double ZHR_0 = 10.0;
             research = HEAD.ResearchMeteorStream(r, ZHR_0);
@@ -357,6 +412,7 @@ int main()
         }
         case 40:
         {
+            std::cout << "Вы исследуете неизвестный метеорный поток!" << "\n";
             research = HEAD.New_ResearchMeteorStream();
             break;
         }
